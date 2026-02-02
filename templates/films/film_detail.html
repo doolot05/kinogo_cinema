@@ -1,11 +1,15 @@
-{% for film in films %}
+{% extends 'base.html' %}
 
+
+{% block content %}
+
+
+
+<div style="width: auto;">
 <p>{{ film.name }}</p>
 <p>{{ film.description }}</p>
 <p>{{ film.year }}</p>
 <p>{{ film.rating }}</p>
 <p>{{ film.created_at }}</p>
-
-
-
-{% endfor %}
+</div>
+ {% endblock %}

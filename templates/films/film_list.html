@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% for film in films %}
+<div style="width: auto;">
+    <p>{{ film.name }}</p>
+    <p>{{ film.description }}</p>
+    <p>{{ film.year }}</p>
+    <p>{{ film.rating }}</p>
+    <p>{{ film.created_at }}</p>
+    <a href="/films/{{film.id}}/" class="btn btn-primary">Посмотреть</a>
+</div>
+
+{% endfor %}
+{% endblock %}

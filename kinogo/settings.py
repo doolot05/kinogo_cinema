@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC' # +0
+TIME_ZONE = 'Asia/Bishkek' # +0
 #Kyrgyzstan = +6
 USE_I18N = True
 

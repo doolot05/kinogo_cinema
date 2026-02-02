@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from film.views import index, film_list
+from film.views import  film_list, film_detail, base
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("index/", index),
-    path("film/", film_list),
+    path("", base),
+    path("films/", film_list),
+    path("films/<int:film_id>/", film_detail)
 ]
