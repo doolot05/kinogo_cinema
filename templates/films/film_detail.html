@@ -5,11 +5,18 @@
 
 
 
-<div style="width: auto;">
-<p>{{ film.name }}</p>
-<p>{{ film.description }}</p>
-<p>{{ film.year }}</p>
-<p>{{ film.rating }}</p>
-<p>{{ film.created_at }}</p>
+<div class="card" style="width: 18rem;">
+    {% if film.image %}
+  <img src="{{film.image.url}}" class="card-img-top" alt="...">
+    {% else %}
+    <img src="/media/empty_image.jpg" class="card-img-top" alt="...">
+    {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ film.name }}</h5>
+    <p class="card-text">{{ film.description }}</p>
+      <p class="card-text">{{ film.year }}</p>
+
+  </div>
 </div>
+
  {% endblock %}

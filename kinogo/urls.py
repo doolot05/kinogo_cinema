@@ -16,12 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from film.views import film_list, film_detail, base, films_category
+from django.conf import settings
 
-from film.views import  film_list, film_detail, base
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", base),
     path("films/", film_list),
-    path("films/<int:film_id>/", film_detail)
-]
+    path("films/<int:film_id>/", film_detail),
+    path("films/category/<int:category_id>", films_category),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

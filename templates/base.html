@@ -8,7 +8,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Kinogo</a>
+    <a class="navbar-brand" href="/">Kinogo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,5 +33,15 @@
 </header>
 
 {% block content %}
+{% for category in categories%}
 
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ category.name }}</h5>
+      <a href="films/category/{{category.id}}" class="btn btn-primary">Посмотреть</a>
+  </div>
+</div>
+
+{% endfor %}
 {% endblock %}
+
