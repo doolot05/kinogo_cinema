@@ -6,8 +6,8 @@ from film.models import Film, Category, Genre
 admin.site.register(Category)
 admin.site.register(Genre)
 
-admin.site.register(Film)
+@admin.register(Film)
 class FilmAdmin(admin.ModelAdmin):
-    list_display = ('name', 'year', 'category', 'created_at', 'updated_at')
+    list_display = ('name', 'year', 'category', 'created_at', 'update_at')
     list_filter = ('category',)
 

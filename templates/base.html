@@ -38,10 +38,9 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">{{ category.name }}</h5>
-      <a href="films/category/{{category.id}}" class="btn btn-primary">Посмотреть</a>
+      <a href="/films/?category_id={{category.id}}" class="btn btn-primary">Посмотреть</a>
   </div>
 </div>
 
 {% endfor %}
 {% endblock %}
-

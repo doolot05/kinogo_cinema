@@ -1,22 +1,44 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
-
-
-<div class="card" style="width: 18rem;">
+<div class="card mb-3" style="max-width: 700px;">
     {% if film.image %}
-  <img src="{{film.image.url}}" class="card-img-top" alt="...">
+        <img src="{{ film.image.url }}" class="card-img-top" alt="{{ film.name }}">
     {% else %}
-    <img src="/media/empty_image.jpg" class="card-img-top" alt="...">
+        <img src="/media/empty_image.jpg" class="card-img-top" alt="Нет изображения">
     {% endif %}
-  <div class="card-body">
-    <h5 class="card-title">{{ film.name }}</h5>
-    <p class="card-text">{{ film.description }}</p>
-      <p class="card-text">{{ film.year }}</p>
 
-  </div>
+    <div class="card-body">
+        <h3 class="card-title">{{ film.name }}</h3>
+
+        <p class="card-text">
+            {{ film.description }}
+        </p>
+
+        <p class="card-text">
+            <strong>Год:</strong> {{ film.year }}
+        </p>
+
+        {% if film.category %}
+        <p class="card-text">
+            <strong>Категория:</strong> {{ film.category.name }}
+        </p>
+        {% endif %}
+
+        {% if film.genre.all %}
+        <p class="card-text">
+            <strong>Жанры:</strong>
+            {% for genre in film.genre.all %}
+                {{ genre.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        {% endif %}
+
+        <a href="{% url 'film_list' %}" class="btn btn-secondary">
+            ← Назад
+        </a>
+    </div>
 </div>
 
- {% endblock %}
+{% endblock %}
