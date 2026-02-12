@@ -1,5 +1,7 @@
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import CreateFilmForm
 from .models import Film, Category
 
 def base(request):
@@ -18,23 +20,27 @@ def film_detail(request, film_id):
         film = get_object_or_404(Film, id=film_id)
         return render(request, "films/film_detail.html", {'film': film})
 
+@login_required(login_url="/login/")
 def film_create(request):
     if request.method == "GET":
-        return render(request, "films/film_create.html")
+        forms = CreateFilmForm()
+        return render(request, "films/film_create.html", context={'forms': forms})
     elif request.method == "POST":
-        print(request.POST)
-        Film.objects.create(
-            name=request.POST.get("name"),
-            description=request.POST.get("description"),
-            year=request.POST.get("year"),
-            image=request.FILES.get("image"),
+        forms = CreateFilmForm(request.POST, request.FILES)
+        if forms.is_valid():
+            Film.objects.create(
+                name=forms.cleaned_data.get("name"),
+                description=forms.cleaned_data.get("description"),
+                year=forms.cleaned_data.get("year"),
+                image=forms.cleaned_data.get("image"),
 
-        )
-        return redirect("/films/")
+             )
+            return redirect("/films/")
+        form = CreateFilmForm()
+        return render(request, "films/film_create.html", {'form': form})
 
 
-
-
+@login_required(login_url="/login/")
 def film_list(request):
     if request.method == "GET":
         films = Film.objects.all()
